@@ -170,7 +170,7 @@ const Home = () => {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={1} id="featured">
-          <div className=" bg-white xl:h-[500px] lg:h-[700px] md:h-[1200px] xl:mt-[2500px] rounded-t-3xl p-[60px]">
+          <div className=" bg-white xl:h-[500px] lg:h-[700px] md:h-[1200px] xl:mt-[2500px] md:mt-[2100px] mt-[3000px] rounded-t-3xl p-[60px]">
             <h1 className="mx-[8px] font-semibold text-[24px]">
               Featured Pokemon
             </h1>
@@ -206,7 +206,7 @@ const Home = () => {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={1}>
-          <footer className="xl:mt-[3000px] lg:mt-[3000px] mt-[3490px]">
+          <footer className="xl:mt-[3000px] lg:mt-[3000px] mt-[4200px]">
             <div className="flex justify-center w-full h-[60px] items-center bg-[#3F5790] text-white mb-auto ">
               Pokemon Website Aurellio
             </div>
