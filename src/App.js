@@ -4,7 +4,12 @@ import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import React from "react";
 import Home from "./routes/Home";
-import Logo from "./assets/logo.png";
+import Detail from "./routes/Detail";
+import Logo from "./assets/logo.webp";
+import pokedex from "./routes/Mainpoke";
+import Mainpoke from "./routes/Mainpoke";
+import Pokeinfo from "./routes/Pokeinfo";
+import { Link } from "react-router-dom";
 
 const App = () => {
   return (
@@ -29,10 +34,17 @@ const App = () => {
           <div className="nav-links duration-500 md:static absolute bg-transparent md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
             <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
               <li>
-                <a className="text-black hover:text-[#ED1B24]">Home</a>
+                <Link to="/" className="text-black hover:text-[#ED1B24]">
+                  Home
+                </Link>
               </li>
               <li>
-                <a className="text-black hover:text-[#ED1B24]">Pokédex</a>
+                <Link
+                  to="/mainpoke"
+                  className="text-black hover:text-[#ED1B24]"
+                >
+                  Pokédex
+                </Link>
               </li>
               <li>
                 <a className="text-black hover:text-[#ED1B24]">News</a>
@@ -47,6 +59,8 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="mainpoke" element={<Mainpoke />} />
+        <Route path="mainpoke/pokeinfo/:id" element={<Pokeinfo />} />
       </Routes>
     </div>
   );
