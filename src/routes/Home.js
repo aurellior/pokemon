@@ -44,7 +44,7 @@ const Home = () => {
 
   return (
     <div>
-      <Parallax pages={2.7}>
+      <Parallax pages={2.3}>
         <ParallaxLayer offset={0} speed={1} factor={2}>
           <div className="bg-gradient-to-t from-[#FFCB05] to-[#F2CE43] bg-cover md:h-[800px] h-[300px]"></div>
         </ParallaxLayer>
@@ -115,7 +115,7 @@ const Home = () => {
             className="2xl:mt-[1560px] xl:mt-[1500px] lg:mt-[1300px]"
             id="news"
           ></div>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 2xl:mt-[1700px] xl:mt-[1650px] lg:mt-[1500px] md:mt-[1300px] sm:mt-[1200px] mt-[600px] mx-[60px] font-inter">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 2xl:mt-[1950px] xl:mt-[1650px] lg:mt-[1500px] md:mt-[1300px] sm:mt-[1200px] mt-[600px] mx-[60px] font-inter">
             <div class="max-w-sm rounded-xl overflow-hidden shadow-lg bg-white mr-[8px] my-[8px]">
               <img class="w-full" src={News1} alt="Sunset in the mountains" />
               <div class="px-6 py-4">
@@ -170,7 +170,7 @@ const Home = () => {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={1} id="featured">
-          <div className=" bg-white xl:h-[500px] lg:h-[700px] md:h-[1200px] mt-[2250px] rounded-t-3xl p-[60px]">
+          <div className=" bg-white xl:h-[500px] lg:h-[700px] md:h-[1200px] xl:mt-[2500px] rounded-t-3xl p-[60px]">
             <h1 className="mx-[8px] font-semibold text-[24px]">
               Featured Pokemon
             </h1>
@@ -206,7 +206,7 @@ const Home = () => {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={0} speed={1}>
-          <footer className="xl:mt-[2770px] lg:mt-[3000px] mt-[3490px]">
+          <footer className="xl:mt-[3000px] lg:mt-[3000px] mt-[3490px]">
             <div className="flex justify-center w-full h-[60px] items-center bg-[#3F5790] text-white mb-auto ">
               Pokemon Website Aurellio
             </div>
