@@ -23,7 +23,7 @@ function Pokeinfo() {
   return (
     <div className="bg-[#F3C100] pt-[100px] w-full pb-[100px]">
       <div>
-        <div className="bg-white xl:mx-[300px] md:mx-[200px] sm:mx-[100px] mx-[40px] rounded-xl p-[40px] px-[100px] ">
+        <div className="bg-white xl:mx-[300px] md:mx-[200px] sm:mx-[100px] mx-[40px] rounded-xl p-[40px] xl:px-[200px] px-[100px] ">
           <Link to="/mainpoke">
             <button className="border-2 py-[4px] px-[12px] rounded-md bg-[#ED1B24] text-white">
               Back
