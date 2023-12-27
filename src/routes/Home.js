@@ -1,4 +1,7 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import TreeBackground from "../assets/tree-background.webp";
 import Tree from "../assets/tree.webp";
@@ -8,11 +11,40 @@ import Pikachu from "../assets/pikachu.webp";
 import TopDesc from "../assets/top-desc.webp";
 import BottomDesc from "../assets/bottom-desc.webp";
 import BackgroundDesc from "../assets/background-desc3.webp";
+import News1 from "../assets/news1.png";
+import News2 from "../assets/news2.png";
+import News3 from "../assets/news3.png";
+import News4 from "../assets/news4.png";
 
 const Home = () => {
+  const [pokeData, setPokeData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
+
+  const getPokemon = async (response) => {
+    response.map(async (item) => {
+      const result = await axios.get(item.url);
+      setPokeData((state) => {
+        state = [...state, result.data];
+        state.sort((a, b) => (a.id > b.id ? 1 : -1));
+        return state;
+      });
+    });
+  };
+
+  useState(() => {
+    const pokeFun = async () => {
+      setLoading(true);
+      const res = await axios.get(url);
+      getPokemon(res.data.results);
+      setLoading(false);
+    };
+    pokeFun();
+  }, [url]);
+
   return (
     <div>
-      <Parallax pages={3}>
+      <Parallax pages={2.7}>
         <ParallaxLayer offset={0} speed={1} factor={2}>
           <div className="bg-gradient-to-t from-[#FFCB05] to-[#F2CE43] bg-cover md:h-[800px] h-[300px]"></div>
         </ParallaxLayer>
@@ -77,9 +109,109 @@ const Home = () => {
         >
           <img src={BottomDesc}></img>
         </ParallaxLayer>
-        <div className="bg-[#3F5790] w-full h-full">
-          <h1>HALO INI TEST</h1>
-        </div>
+        <div className="bg-[#3F5790] w-full h-full"></div>
+        <ParallaxLayer offset={0} speed={1} className="">
+          <div
+            className="2xl:mt-[1560px] xl:mt-[1500px] lg:mt-[1300px]"
+            id="news"
+          ></div>
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 2xl:mt-[1700px] xl:mt-[1650px] lg:mt-[1500px] md:mt-[1300px] sm:mt-[1200px] mt-[600px] mx-[60px] font-inter">
+            <div class="max-w-sm rounded-xl overflow-hidden shadow-lg bg-white mr-[8px] my-[8px]">
+              <img class="w-full" src={News1} alt="Sunset in the mountains" />
+              <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">
+                  Watch Pokemon Animation Together
+                </div>
+                <p class="text-gray-700 text-base">
+                  If you’re looking for animated Pokémon adventures this holiday
+                  season, we’ll help you find something cool to watch.
+                </p>
+              </div>
+            </div>
+
+            <div class="max-w-sm rounded-xl overflow-hidden shadow-lg bg-white mx-[8px] my-[8px]">
+              <img class="w-full" src={News2} alt="Sunset in the mountains" />
+              <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">
+                  A Primal-Yet-Playful Year for Pokemon G
+                </div>
+                <p class="text-gray-700 text-base">
+                  From Paldean Pokémon and Party Play to the crowning of a
+                  second Pokémon GO World Champion!
+                </p>
+              </div>
+            </div>
+
+            <div class="max-w-sm rounded-xl overflow-hidden shadow-lg bg-white mx-[8px] my-[8px]">
+              <img class="w-full" src={News3} alt="Sunset in the mountains" />
+              <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">
+                  Meet That Artist Made Their Pokemon TCG Debut in 2023
+                </div>
+                <p class="text-gray-700 text-base">
+                  Meet some of the artists who made a powerful first impression
+                  with their Pokémon TCG cards in 2023.
+                </p>
+              </div>
+            </div>
+
+            <div class="max-w-sm rounded-xl overflow-hidden shadow-lg bg-white ml-[8px] my-[8px]">
+              <img class="w-full" src={News4} alt="Sunset in the mountains" />
+              <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">
+                  Party with Psyduck and Shiny Vanillite in Pokemon GOt
+                </div>
+                <p class="text-gray-700 text-base">
+                  Shiny Vanillite debuts, event bonuses abound, and several
+                  Pokémon wear their holiday finest.
+                </p>
+              </div>
+            </div>
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={1} id="featured">
+          <div className=" bg-white xl:h-[500px] lg:h-[700px] md:h-[1200px] mt-[2250px] rounded-t-3xl p-[60px]">
+            <h1 className="mx-[8px] font-semibold text-[24px]">
+              Featured Pokemon
+            </h1>
+            <div className="grid xl:grid-cols-4 lg:grid-cols-2  my-[40px]">
+              {loading ? (
+                <h1>Loading...</h1>
+              ) : (
+                pokeData.map((item) =>
+                  item.id <= 4 ? (
+                    <Link to={`mainpoke/pokeinfo/${item.id}`} key={item.id}>
+                      <div className="m-[8px] grid justify-center border-2 rounded-xl py-[8px] shadow-md bg-white">
+                        <p className="text-left">#{item.id}</p>
+                        <img
+                          className="w-auto h-[150px]"
+                          src={item.sprites.front_default}
+                          alt=""
+                        />
+                        <h2 className="text-center">{item.name}</h2>
+                      </div>
+                    </Link>
+                  ) : null
+                )
+              )}
+            </div>
+            <div className="flex justify-between mx-[8px]">
+              <div></div>
+              <Link to="/mainpoke">
+                <button className="bg-[#ED1B24] text-white px-[24px] py-[12px] rounded-xl h-auto w-[250px] ml-[8px]">
+                  Explore More Pokemon
+                </button>
+              </Link>
+            </div>
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0} speed={1}>
+          <footer className="xl:mt-[2770px] lg:mt-[3000px] mt-[3490px]">
+            <div className="flex justify-center w-full h-[60px] items-center bg-[#3F5790] text-white mb-auto ">
+              Pokemon Website Aurellio
+            </div>
+          </footer>
+        </ParallaxLayer>
       </Parallax>
     </div>
   );

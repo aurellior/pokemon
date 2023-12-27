@@ -15,3 +15,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.navbarComp {
+  background: #ffe01b;
+  transition: 0.3s;
+}
+
+.navbarScrolled {
+  background-color: transparent;
+  color: transparent;
+}
